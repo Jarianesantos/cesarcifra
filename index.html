@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CesarBase</title>
     <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Average&family=Cabin:wght@400;500;600;700&family=Catamaran:wght@400;500;600&family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <main class="container">
@@ -14,11 +15,13 @@
             <input id="conteudo" class="caixa" type="text">
         </section>
         <section class="cesarBase">
-            <input type="radio" id="selectCesar" >Cesar</input>
-            <input type="radio" id="selectBase" >Base 64</input>
+            <input type="radio" id="selectCesar" class="seletores">Cesar</input>
+            <input type="radio" id="selectBase" class="seletores">Base 64</input>
         </section>
-        <div id="botoes" ></div>
-        <div id="resultado"></div>
+        <section class="botoesResult">
+            <div id="botoes" class="baseBotoes"></div>
+            <div id="resultado"></div>
+        </section>  
         <script src="./index.js"></script>
     </main>
 </body>

@@ -8,30 +8,24 @@ var selectCesar = document.querySelector("#selectCesar");
 selectCesar.addEventListener("click", function(){
     var mostrarBotao = document.querySelector("#botoes");
     mostrarBotao.innerHTML = `
-    <input id="incremento" type="number">
-    <button id="codif">Codificar</button>
-    <button id="decod">Decodificar</button>
+    <section class="baseBotoes">
+    <input id="incremento" class="estIncrem" type="number">
+    <button id="codif" class="estBotao">Codificar</button>
+    <button id="decod" class="estBotao">Decodificar</button>
+    </section>
     `
     console.log(texto);
 
     var selectCodif = document.querySelector("#codif");
 
     selectCodif.addEventListener("click", function(){
-    texto = [];
-    defTexto();
-    console.log(defTexto());
-    defIncrem();
-    console.log(defIncrem());
-    cesarCod = "";
-    console.log(cifraDeCesar1());
-    if (defIncrem() > 0 && defIncrem() < 7){
+        defTexto();
+        defIncrem();
+        cesarCod = "";
+        console.log(cifraDeCesar1());
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerHTML = `<h1>Resultado: ${cesarCod}</h1>`
-        cesarCod = aleat;
-    } else {
-        alert("Incremento limite de 0 até 6, coloque novamente")
-        location.reload();
-    }
+        mostrarResult.innerHTML = `<input class="caixa2" type="text" value="${cesarCod}">`
+        console.log(mostrarResult);
     })
 
     var selectDecod = document.querySelector("#decod");
@@ -40,14 +34,8 @@ selectCesar.addEventListener("click", function(){
         cesarCod = "";
         defTexto();
         defIncrem();
-        console.log(cifraDeCesar3());
-        if (defIncrem() > 0 && defIncrem() < 7){
-            var mostrarResult = document.querySelector("#resultado");
-            mostrarResult.innerText = `Resultado : ${cesarCod}`
-        } else {
-            alert("Incremento limite de 0 até 6, coloque novamente")
-            location.reload();
-        }
+        var mostrarResult = document.querySelector("#resultado");
+        mostrarResult.innerHTML = `<input class="caixa2" type="text" value="${cifraDeCesar3()}">`
     })
 
 
@@ -69,7 +57,7 @@ selectBase.addEventListener("click", function(){
         defTexto();
         var baseCodif = btoa(texto);
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerText = `Resultado : ${baseCodif}`
+        mostrarResult.innerHTML = `<input type="text" class="caixa2" value="${baseCodif}">`
     })
 
     var selectDecod = document.querySelector("#decod");
@@ -78,7 +66,7 @@ selectBase.addEventListener("click", function(){
         defTexto();
         var baseDecod = atob(texto);
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerText = `<h1>Resultado: ${baseDecod}</h1>`;
+        mostrarResult.innerHTML = `<input type="text" class="caixa2" value="${baseDecod}">`;
     })
 })
 var aleat = " ";
@@ -86,7 +74,7 @@ var texto = [];
 var incremento = 0;
 function defTexto(){
     cesarCod = "";
-    // texto = document.querySelector("#conteudo").value
+
     texto = document.getElementById("conteudo").value;
     return texto;
 }
@@ -99,19 +87,27 @@ function defIncrem(){
 //Cifra de Cesar - Codificar
 var cesar = [];
 var cesarCod = "";
+var novoInc = 0;
 function cifraDeCesar1(){
+    if (parseInt(incremento) > 25 && parseInt(incremento)!= 26){
+        novoInc = parseInt(incremento) % 26;
+    } else {
+        novoInc = parseInt(incremento);
+    }
     for(var i = 0; i < texto.length; i++){
         if (texto.charCodeAt(i) == 32){
             cesar.push(texto.charCodeAt(i));
         } else {
-            if (texto.charCodeAt(i) + parseInt(incremento) >= 91 && texto.charCodeAt(i) + parseInt(incremento) <= 96){
-                cesar.push(texto.charCodeAt(i) - (26-parseInt(incremento)))
-            } else if (texto.charCodeAt(i) + parseInt(incremento) >= 123){
-                cesar.push(texto.charCodeAt(i) - (26-parseInt(incremento)))
-            } else
-            cesar.push(texto.charCodeAt(i) + parseInt(incremento));
+            if (texto.charCodeAt(i) + novoInc >= 91 && texto.charCodeAt(i) + novoInc <= 96){
+                cesar.push(texto.charCodeAt(i) - (26-novoInc))
+            } else if (texto.charCodeAt(i) + novoInc >= 123){
+                cesar.push(texto.charCodeAt(i) - (26-novoInc))
+            } else {
+            cesar.push(texto.charCodeAt(i) + novoInc);
+            }
         }
     }
+
     cesarCod = "";
     for( var i = 0; i < cesar.length; i++){
         cesarCod += String.fromCharCode(cesar[i]).toString();
@@ -119,22 +115,28 @@ function cifraDeCesar1(){
     return cesarCod;
 }
 //Cifra de Cesar - Decodificar
+var cesarDecod = "";
 function cifraDeCesar3(){
+    if (parseInt(incremento) > 25 && parseInt(incremento)!= 26){
+        novoInc = parseInt(incremento) % 26;
+    } else {
+        novoInc = parseInt(incremento);
+    }
     for(var i = 0; i < texto.length; i++){
         if (texto.charCodeAt(i) == 32){
             cesar.push(texto.charCodeAt(i));
         } else {
-            if (texto.charCodeAt(i) - parseInt(incremento) >= 91 && texto.charCodeAt(i) - parseInt(incremento) <= 96){
-                cesar.push(texto.charCodeAt(i) + (26-parseInt(incremento)))
-            } else if (texto.charCodeAt(i) - parseInt(incremento) <= 64){
-                cesar.push(texto.charCodeAt(i) + (26-parseInt(incremento)))
+            if (texto.charCodeAt(i) - novoInc >= 91 && texto.charCodeAt(i) - novoInc <= 96){
+                cesar.push(texto.charCodeAt(i) + (26-novoInc))
+            } else if (texto.charCodeAt(i) - novoInc <= 64){
+                cesar.push(texto.charCodeAt(i) + (26-novoInc))
             } else
-                cesar.push(texto.charCodeAt(i) - parseInt(incremento));
+                cesar.push(texto.charCodeAt(i) - novoInc);
         }
     }
-    cesarCod = "";
+    cesarDecod = "";
     for( var i = 0; i < cesar.length; i++){
-        cesarCod += String.fromCharCode(cesar[i]).toString();
+        cesarDecod += String.fromCharCode(cesar[i]).toString();
     }
-    return cesarCod;
+    return cesarDecod;
 }
