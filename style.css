@@ -26,6 +26,7 @@ h1 {
     font-family: 'Cabin', sans-serif;
     font-size: 40px;
     color: rgb(187, 0, 224);
+    text-align: center;
 }
 .caixa {
     width: 500px;
@@ -76,15 +77,16 @@ h1 {
     width: 70%;
     margin: 10px;
     font-size: 20px;
+    text-align: center;
 }
 .estBotao {
     width: 70%;
     margin: 10px;
     font-size: 20px;
     background-color: rgba(0, 0, 0, 0.397);
-    border: 2px solid rgba(240, 248, 255, 0.815);
-    color: azure;
-    border-radius: 10px;
+    border: 1px solid rgba(240, 248, 255, 0.815);
+    color: rgba(187, 0, 224, 0.751);
+    border-radius: 10px 0px;
 }
 .caixa2 {
     width: 500px;
@@ -98,4 +100,16 @@ h1 {
     text-align: center;
     font-family: 'Cabin', sans-serif;
     margin-top: 25px;
+}
+
+@media (max-width:537px) {
+    .caixa {
+        width: 200px;
+    }
+    .caixa2 {
+        width: 200px;
+    }
+    .estIncrem{
+        width: 40px;
+    }
 }
