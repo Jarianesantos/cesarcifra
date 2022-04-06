@@ -27,6 +27,7 @@ h1 {
     font-size: 40px;
     color: rgb(187, 0, 224);
     text-align: center;
+    text-shadow: 2px 2px 2px rgba(18, 18, 18, 0.925);
 }
 .caixa {
     width: 500px;
@@ -54,6 +55,7 @@ h1 {
     font-size: 25px;
     font-family: 'Cabin', sans-serif;;
     color: azure;
+    text-shadow: 2px 2px 2px rgba(18, 18, 18, 0.925);
 }
 .seletores {
     color:  rgb(242, 0, 255);
@@ -85,8 +87,14 @@ h1 {
     font-size: 20px;
     background-color: rgba(0, 0, 0, 0.397);
     border: 1px solid rgba(240, 248, 255, 0.815);
-    color: rgba(187, 0, 224, 0.751);
-    border-radius: 10px 0px;
+    color: rgba(226, 117, 248, 0.751);
+    border-radius: 5px 0px;
+    padding: 10px;
+    font-weight: 400;
+    font-family: 'Cabin', sans-serif;
+}
+.estBotao:hover {
+    text-shadow: 1px 1px 3px rgb(242, 0, 255);
 }
 .caixa2 {
     width: 500px;
