@@ -14,8 +14,6 @@ selectCesar.addEventListener("click", function(){
     <button id="decod" class="estBotao">Decodificar</button>
     </section>
     `
-    console.log(texto);
-
     var selectCodif = document.querySelector("#codif");
 
     selectCodif.addEventListener("click", function(){
@@ -24,7 +22,7 @@ selectCesar.addEventListener("click", function(){
         cesarCod = "";
         console.log(cifraDeCesar1());
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerHTML = `<input class="caixa2" type="text" value="${cesarCod}">`
+        mostrarResult.innerHTML = `<textarea class="caixa2" type="text">${cesarCod}</textarea>`
         console.log(mostrarResult);
     })
 
@@ -35,7 +33,7 @@ selectCesar.addEventListener("click", function(){
         defTexto();
         defIncrem();
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerHTML = `<input class="caixa2" type="text" value="${cifraDeCesar3()}">`
+        mostrarResult.innerHTML = `<textarea class="caixa2" type="text" >${cifraDeCesar3()}</textarea>`
     })
 
 
@@ -57,7 +55,7 @@ selectBase.addEventListener("click", function(){
         defTexto();
         var baseCodif = btoa(texto);
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerHTML = `<input type="text" class="caixa2" value="${baseCodif}">`
+        mostrarResult.innerHTML = `<textarea type="text" class="caixa2" >${baseCodif}</textarea>`
     })
 
     var selectDecod = document.querySelector("#decod");
@@ -66,7 +64,7 @@ selectBase.addEventListener("click", function(){
         defTexto();
         var baseDecod = atob(texto);
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerHTML = `<input type="text" class="caixa2" value="${baseDecod}">`;
+        mostrarResult.innerHTML = `<textarea type="text" class="caixa2" >${baseDecod}</textarea>`;
     })
 })
 var aleat = " ";
@@ -94,16 +92,23 @@ function cifraDeCesar1(){
     } else {
         novoInc = parseInt(incremento);
     }
+    cesar = [];
     for(var i = 0; i < texto.length; i++){
         if (texto.charCodeAt(i) == 32){
             cesar.push(texto.charCodeAt(i));
         } else {
-            if (texto.charCodeAt(i) + novoInc >= 91 && texto.charCodeAt(i) + novoInc <= 96){
-                cesar.push(texto.charCodeAt(i) - (26-novoInc))
-            } else if (texto.charCodeAt(i) + novoInc >= 123){
-                cesar.push(texto.charCodeAt(i) - (26-novoInc))
-            } else {
-            cesar.push(texto.charCodeAt(i) + novoInc);
+            if (texto.charCodeAt(i) > 96 && texto.charCodeAt(i) < 123){
+                if (texto.charCodeAt(i) + novoInc <= 96 || texto.charCodeAt(i) + novoInc >= 123){
+                    cesar.push(texto.charCodeAt(i) - (26-novoInc))
+                } else {
+                cesar.push(texto.charCodeAt(i) + novoInc);
+                }
+            } else if (texto.charCodeAt(i) > 64 && texto.charCodeAt(i) < 91){
+                if (texto.charCodeAt(i) + novoInc >= 91 || texto.charCodeAt(i) + novoInc <= 64){
+                    cesar.push(texto.charCodeAt(i) - (26-novoInc))
+                } else {
+                cesar.push(texto.charCodeAt(i) + novoInc);
+                }
             }
         }
     }
@@ -122,16 +127,24 @@ function cifraDeCesar3(){
     } else {
         novoInc = parseInt(incremento);
     }
+    cesar = [];
     for(var i = 0; i < texto.length; i++){
         if (texto.charCodeAt(i) == 32){
             cesar.push(texto.charCodeAt(i));
         } else {
-            if (texto.charCodeAt(i) - novoInc >= 91 && texto.charCodeAt(i) - novoInc <= 96){
-                cesar.push(texto.charCodeAt(i) + (26-novoInc))
-            } else if (texto.charCodeAt(i) - novoInc <= 64){
-                cesar.push(texto.charCodeAt(i) + (26-novoInc))
-            } else
+            if (texto.charCodeAt(i) > 96 && texto.charCodeAt(i) < 123){
+                if (texto.charCodeAt(i) - novoInc <= 96 || texto.charCodeAt(i) - novoInc >= 123){
+                    cesar.push(texto.charCodeAt(i) + (26-novoInc))
+                } else {
                 cesar.push(texto.charCodeAt(i) - novoInc);
+                }
+            } else if (texto.charCodeAt(i) > 64 && texto.charCodeAt(i) < 91){
+                if (texto.charCodeAt(i) - novoInc >= 91 || texto.charCodeAt(i) - novoInc <= 64){
+                    cesar.push(texto.charCodeAt(i) + (26-novoInc))
+                } else {
+                cesar.push(texto.charCodeAt(i) - novoInc);
+                }
+            }
         }
     }
     cesarDecod = "";

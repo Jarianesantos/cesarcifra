@@ -39,7 +39,7 @@ h1 {
     color: azure;
     text-align: center;
     font-family: 'Cabin', sans-serif;
-
+    padding: 10px;
 }
 
 /* section 2 */
@@ -100,6 +100,7 @@ h1 {
     text-align: center;
     font-family: 'Cabin', sans-serif;
     margin-top: 25px;
+    padding: 20px;
 }
 
 @media (max-width:537px) {
