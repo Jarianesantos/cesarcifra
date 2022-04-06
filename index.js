@@ -1,3 +1,6 @@
+// document.querySelector("main").addEventListener("radio", function(event){
+//     event.preventDefault();
+// })
 
 //Funcionar os seletores
 var selectCesar = document.querySelector("#selectCesar");
@@ -9,29 +12,42 @@ selectCesar.addEventListener("click", function(){
     <button id="codif">Codificar</button>
     <button id="decod">Decodificar</button>
     `
-    defTexto();
-    console.log(defTexto());
+    console.log(texto);
 
     var selectCodif = document.querySelector("#codif");
 
     selectCodif.addEventListener("click", function(){
+    texto = [];
+    defTexto();
+    console.log(defTexto());
     defIncrem();
     console.log(defIncrem());
+    cesarCod = "";
     console.log(cifraDeCesar1());
-    console.log(cifraDeCesar2());
-    var mostrarResult = document.querySelector("#resultado");
-    mostrarResult.innerText = `Resultado : ${cesarCod}`
+    if (defIncrem() > 0 && defIncrem() < 7){
+        var mostrarResult = document.querySelector("#resultado");
+        mostrarResult.innerHTML = `<h1>Resultado: ${cesarCod}</h1>`
+        cesarCod = aleat;
+    } else {
+        alert("Incremento limite de 0 até 6, coloque novamente")
+        location.reload();
+    }
     })
 
     var selectDecod = document.querySelector("#decod");
 
     selectDecod.addEventListener("click", function(){
+        cesarCod = "";
+        defTexto();
         defIncrem();
-        console.log(defIncrem());
         console.log(cifraDeCesar3());
-        console.log(cifraDeCesar2());
-        var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerText = `Resultado : ${cesarCod}`
+        if (defIncrem() > 0 && defIncrem() < 7){
+            var mostrarResult = document.querySelector("#resultado");
+            mostrarResult.innerText = `Resultado : ${cesarCod}`
+        } else {
+            alert("Incremento limite de 0 até 6, coloque novamente")
+            location.reload();
+        }
     })
 
 
@@ -42,8 +58,10 @@ var selectBase = document.querySelector("#selectBase");
 selectBase.addEventListener("click", function(){
     var mostrarBotao = document.querySelector("div");
     mostrarBotao.innerHTML = `
-    <button id="codif">Codificar</button>
-    <button id="decod">Decodificar</button>
+    <section class="baseBotoes">
+    <button id="codif" class="estBotao">Codificar</button>
+    <button id="decod" class="estBotao">Decodificar</button>
+    </section>
     `
     var selectCodif = document.querySelector("#codif");
 
@@ -60,24 +78,27 @@ selectBase.addEventListener("click", function(){
         defTexto();
         var baseDecod = atob(texto);
         var mostrarResult = document.querySelector("#resultado");
-        mostrarResult.innerText = `Resultado: ${baseDecod}`;
+        mostrarResult.innerText = `<h1>Resultado: ${baseDecod}</h1>`;
     })
 })
-  
+var aleat = " ";
 var texto = [];
 var incremento = 0;
 function defTexto(){
-    texto = document.querySelector("#conteudo").value
+    cesarCod = "";
+    // texto = document.querySelector("#conteudo").value
+    texto = document.getElementById("conteudo").value;
     return texto;
 }
 function defIncrem(){
+    incremento = 0;
     incremento = document.querySelector("#incremento").value
     return incremento;
 }
 
 //Cifra de Cesar - Codificar
 var cesar = [];
-var cesarCod = [];
+var cesarCod = "";
 function cifraDeCesar1(){
     for(var i = 0; i < texto.length; i++){
         if (texto.charCodeAt(i) == 32){
@@ -91,9 +112,7 @@ function cifraDeCesar1(){
             cesar.push(texto.charCodeAt(i) + parseInt(incremento));
         }
     }
-    return cesar; 
-}
-function cifraDeCesar2(){
+    cesarCod = "";
     for( var i = 0; i < cesar.length; i++){
         cesarCod += String.fromCharCode(cesar[i]).toString();
     }
@@ -113,5 +132,9 @@ function cifraDeCesar3(){
                 cesar.push(texto.charCodeAt(i) - parseInt(incremento));
         }
     }
-    return cesar; 
+    cesarCod = "";
+    for( var i = 0; i < cesar.length; i++){
+        cesarCod += String.fromCharCode(cesar[i]).toString();
+    }
+    return cesarCod;
 }

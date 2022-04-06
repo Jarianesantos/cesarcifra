@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.titCaixa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+.cesarBase {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px;
+    font-size: 20px;
+}
+.baseBotoes {
+    display: flex;
+    flex-direction: row;
+}
+.estBotao {
+    width: 70%;
+    margin: 10px;
+    font-size: 20px;
+}
+.caixa {
+    width: 50%;
+    height: 50%;
+    height: 200px;
+}
